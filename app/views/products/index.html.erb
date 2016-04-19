@@ -3,33 +3,34 @@
 <h1>Lista de Produtos</h1>
 
 <div class="row col-md-9 custyle">
-
-<table class="table table-striped custab">
-  <thead>
-    <tr>
-      <th>Nome do Produto</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
+  <table class="table table-striped custab">
+    <thead>
+      <a href="#" class="btn btn-primary btn-xs pull-right" id="new_product_button"><b>+</b> Add Produto</a>
       <tr>
-        <td><%= product.name %></td>
-        <td class="text-right"><a class='btn btn-info btn-xs'>
-        <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs">
-        <span class="glyphicon glyphicon-remove"></span> Del</a></td
+        <th>Nome do Produto</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td class="text-right"><a class='btn btn-info btn-xs'>
+          <span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs">
+          <span class="glyphicon glyphicon-remove"></span> Del</a></td
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
-<div id="myModal" class="modal fade in"modal fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="" class="modal fade in"modal fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+              <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
 
                 <div class="modal-header">
-                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
                     <h4 class="modal-title">Modal Heading</h4>
                 </div>
                 <div class="modal-body">
@@ -47,5 +48,53 @@
         </div><!-- /.modal-dalog -->
     </div>
 
+    <div id="" class="modal fade in"modal fade tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-<%= link_to 'New Product', new_product_path %>
+                    <div class="modal-header">
+                        //<a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4 class="modal-title">Modal Heading</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Text in a modal</h4>
+                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Save</button>
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dalog -->
+        </div>
+
+        <div id="new_product_modal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Novo Produto</h4>
+              </div>
+              <%= form_for Product.new, :html => {class: "form-horizontal", role: "form"} do |f| %>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      <div class="col-sm-7">
+                      <%= f.text_field :name, class: "form-control", placeholder: "Nome do Produto" %>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <%= f.submit "Salvar", class:"btn btn-primary"%>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
